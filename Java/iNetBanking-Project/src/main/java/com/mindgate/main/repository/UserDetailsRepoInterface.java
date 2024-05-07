@@ -10,3 +10,4 @@ public interface UserDetailsRepoInterface {
 	public List<UserDetails> getAll();
 	
 }
+
