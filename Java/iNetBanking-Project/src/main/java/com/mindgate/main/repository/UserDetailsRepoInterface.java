@@ -1,6 +1,9 @@
 package com.mindgate.main.repository;
 
-public class UserDetailsRepoInterface {
+import com.mindgate.main.domain.UserDetails;
 
+public interface UserDetailsRepoInterface {
 
+	public UserDetails getById(String emailId);
+	
 }

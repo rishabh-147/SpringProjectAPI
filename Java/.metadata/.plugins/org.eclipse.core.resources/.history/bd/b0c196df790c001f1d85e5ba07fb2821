@@ -1,0 +1,18 @@
+package com.mindgate.main.repository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.mindgate.main.domain.UserDetails;
+
+public class UserDetailsService implements UserDetailsServiceInterface{
+	
+	@Autowired
+	private UserDetailsRepoInterface userDetailsRepo;
+
+	@Override
+	public UserDetails getById(String emailId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

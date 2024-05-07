@@ -1,1 +1,1 @@
-askfjdL QWBDHOWahipdaDpiAGPSFDGAUGSFIUgIfgo:kasjbd;asn dflk sankcl
+1. Added controller userdetails/getbyid/emailid

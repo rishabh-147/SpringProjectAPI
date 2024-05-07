@@ -1,0 +1,5 @@
+package com.mindgate.main.repository;
+
+public interface UserDetailsServiceInterface {
+
+}

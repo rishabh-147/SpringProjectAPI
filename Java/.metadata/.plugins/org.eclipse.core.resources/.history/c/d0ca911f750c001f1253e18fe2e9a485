@@ -1,0 +1,11 @@
+package com.mindgate.main.domain;
+
+public class UserDetails {
+
+	private int  userId;
+	private String firstName;
+	private String lastName;
+	private String password;
+	private Date date_o_birth
+	
+}

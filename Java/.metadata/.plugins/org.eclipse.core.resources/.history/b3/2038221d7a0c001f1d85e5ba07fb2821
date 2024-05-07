@@ -1,0 +1,5 @@
+package com.mindgate.main.controllers;
+
+public class UserDetailsController {
+
+}
