@@ -1,1 +1,52 @@
 2024-05-07 14:51:20,408 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-05-07 15:38:07,983 [Worker-55: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.mindgate.main:iNetBanking-Project:0.0.1-SNAPSHOT @ D:\Project\Java\iNetBanking Project\iNetBanking-Project\pom.xml.
+2024-05-07 15:38:09,110 [Worker-55: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /iNetBanking-Project/src/main/java
+2024-05-07 15:38:09,112 [Worker-55: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /iNetBanking-Project/src/main/resources
+2024-05-07 15:38:09,116 [Worker-55: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /iNetBanking-Project/src/main/resources
+2024-05-07 15:38:09,119 [Worker-55: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /iNetBanking-Project/src/test/java
+2024-05-07 15:38:09,121 [Worker-55: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /iNetBanking-Project/src/test/resources
+2024-05-07 15:38:09,757 [Worker-55: Importing Maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 3 sec
+2024-05-07 15:38:10,643 [Worker-58: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-07 15:38:10,674 [Worker-58: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-07 15:38:10,682 [Worker-58: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Project\Java\iNetBanking Project\iNetBanking-Project\src\test\resources
+2024-05-07 15:45:22,597 [Worker-60: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.mindgate.main:iNetBanking-Project:0.0.1-SNAPSHOT @ C:\Users\MGSCHN-USER397\git\SpringProjectAPI\iNetBanking Project\iNetBanking-Project\pom.xml.
+2024-05-07 15:45:22,974 [Worker-60: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /iNetBanking-Project/src/main/java
+2024-05-07 15:45:22,975 [Worker-60: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /iNetBanking-Project/src/main/resources
+2024-05-07 15:45:22,975 [Worker-60: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /iNetBanking-Project/src/main/resources
+2024-05-07 15:45:22,976 [Worker-60: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /iNetBanking-Project/src/test/java
+2024-05-07 15:45:22,977 [Worker-60: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /iNetBanking-Project/src/test/resources
+2024-05-07 15:45:23,086 [Worker-60: Importing Maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 0 sec
+2024-05-07 15:45:23,461 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-07 15:45:23,472 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-07 15:45:23,475 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\MGSCHN-USER397\git\SpringProjectAPI\iNetBanking Project\iNetBanking-Project\src\test\resources
+2024-05-07 15:59:49,125 [Worker-66: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.mindgate.main:iNetBanking-Project:0.0.1-SNAPSHOT @ D:\Project\Java\iNetBanking-Project\pom.xml.
+2024-05-07 15:59:49,301 [Worker-66: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /iNetBanking-Project/src/main/java
+2024-05-07 15:59:49,301 [Worker-66: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /iNetBanking-Project/src/main/resources
+2024-05-07 15:59:49,301 [Worker-66: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /iNetBanking-Project/src/main/resources
+2024-05-07 15:59:49,302 [Worker-66: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /iNetBanking-Project/src/test/java
+2024-05-07 15:59:49,302 [Worker-66: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /iNetBanking-Project/src/test/resources
+2024-05-07 15:59:49,390 [Worker-66: Importing Maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 1 sec
+2024-05-07 15:59:49,666 [Worker-70: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-07 15:59:49,683 [Worker-70: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-07 15:59:49,688 [Worker-70: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Project\Java\iNetBanking-Project\src\test\resources
+2024-05-07 16:00:21,854 [Worker-70: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-07 16:00:21,858 [Worker-70: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-07 16:00:21,861 [Worker-70: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Project\Java\iNetBanking-Project\src\test\resources
+2024-05-07 16:04:59,143 [Worker-73: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-07 16:04:59,152 [Worker-73: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-07 16:04:59,154 [Worker-73: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Project\Java\iNetBanking-Project\src\test\resources
+2024-05-07 16:05:43,448 [Worker-75: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-07 16:05:43,455 [Worker-75: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-07 16:05:43,457 [Worker-75: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Project\Java\iNetBanking-Project\src\test\resources
+2024-05-07 16:06:37,765 [Worker-77: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-07 16:06:37,784 [Worker-77: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-07 16:06:37,791 [Worker-77: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Project\Java\iNetBanking-Project\src\test\resources
+2024-05-07 16:45:30,181 [Worker-105: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-07 16:45:30,189 [Worker-105: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-07 16:45:30,194 [Worker-105: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Project\Java\iNetBanking-Project\src\test\resources
+2024-05-07 16:47:56,662 [Worker-107: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-07 16:47:56,668 [Worker-107: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-07 16:47:56,670 [Worker-107: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Project\Java\iNetBanking-Project\src\test\resources
+2024-05-07 16:48:28,743 [Worker-111: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-07 16:48:28,752 [Worker-111: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-07 16:48:28,756 [Worker-111: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Project\Java\iNetBanking-Project\src\test\resources
