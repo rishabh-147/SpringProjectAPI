@@ -32,4 +32,9 @@ public class UserDetailsController {
 	public ResponseEntity<?> loginVerification(@RequestBody UserDetails userDetails) {
 		return service.verifylogin(userDetails);
 	}
+	
+	@PostMapping("adminlogin")
+	public ResponseEntity<?> adminloginverfication(@RequestBody UserDetails userDetails){
+		return service.verifyadminlogin(userDetails);
+	}
 }

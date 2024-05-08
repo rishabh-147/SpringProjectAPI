@@ -6,9 +6,6 @@ public interface UserDetailsRepoInterface {
 
 	public UserDetails getById(String emailId);
 	
-	//Verification
-	public boolean verifylogin(UserDetails userDetails);
-	
 	
 }
 

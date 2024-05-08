@@ -31,4 +31,26 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail);
 
 	}
+	
+	@ExceptionHandler(PasswordMismatchException.class)
+	public ResponseEntity<ProblemDetail> passwordMismatch(PasswordMismatchException passwordMismatchException) {
+		ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+		problemDetail.setTitle("Password Mismatch!!");
+		problemDetail.setType(URI.create("http://localhost:8080/userdetails/verifylogin"));
+		problemDetail.setProperty("host", "localhost");
+		problemDetail.setProperty("port", "8080");
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail);
+
+	}
+	
+	@ExceptionHandler(LoginLimitException.class)
+	public ResponseEntity<ProblemDetail> passwordMismatch(LoginLimitException loginLimitException) {
+		ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+		problemDetail.setTitle("Maximum limits reached!! Contact Administrator!");
+		problemDetail.setType(URI.create("http://localhost:8080/userdetails/verifylogin"));
+		problemDetail.setProperty("host", "localhost");
+		problemDetail.setProperty("port", "8080");
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail);
+
+	}
 }

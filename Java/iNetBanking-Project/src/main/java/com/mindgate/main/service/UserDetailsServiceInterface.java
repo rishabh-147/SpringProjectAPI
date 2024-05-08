@@ -8,4 +8,6 @@ public interface UserDetailsServiceInterface {
 	public ResponseEntity<?> getById(String emailId);
 	//Verification
 	public ResponseEntity<?> verifylogin(UserDetails userDetails);
+	//admin login service
+	public ResponseEntity<?> verifyadminlogin(UserDetails userDetails);
 }
