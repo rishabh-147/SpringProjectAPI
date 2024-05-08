@@ -8,6 +8,7 @@ public interface UserDetailsRepoInterface {
 
 	public UserDetails getById(String emailId);
 	public List<UserDetails> getAll();
+	public String getLoginById(int userId);
 	
 }
 
