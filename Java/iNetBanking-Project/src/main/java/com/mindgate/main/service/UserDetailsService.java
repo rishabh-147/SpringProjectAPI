@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import com.mindgate.main.domain.UserDetails;
 import com.mindgate.main.exception.LoginLimitException;
 import com.mindgate.main.exception.PasswordMismatchException;
+import com.mindgate.main.exception.UserAlreadyExists;
 import com.mindgate.main.exception.UserDetailsDoesNotExist;
+import com.mindgate.main.exception.UserNotAddedException;
 import com.mindgate.main.repository.UserDetailsRepoInterface;
 
 @Service
@@ -17,6 +19,45 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 
 	@Autowired
 	private UserDetailsRepoInterface userDetailsRepo;
+	private AccountDetailsServiceInterface accountDetailsService;
+	
+	
+	
+	@Override
+	public ResponseEntity<?> addUser(UserDetails userDetails) {
+		if(userDetailsRepo.getById(userDetails.getEmailId()) != null) {
+			//already a user exception
+			
+			throw new UserAlreadyExists("User already exists");
+		}
+		UserDetails details = userDetailsRepo.addUser(userDetails);
+		if(details != null)
+			return new ResponseEntity<UserDetails>(details, HttpStatusCode.valueOf(200));
+		else
+			throw new UserNotAddedException("Internal Error");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public ResponseEntity<?> getById(String emailId) {
@@ -33,7 +74,7 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 		boolean res = false;
 
 		UserDetails details = userDetailsRepo.getById(email); // throws UserNotFoundException if user not found in repo
-//*****Login activbe if false deny login if true procceeeedd
+//Login activbe if false deny login if true procceeeedd
 		if (details.getUserType().equals("user")) {
 
 			if (details.getPassword().equals(password) && details.getLoginCount() < 3) {
@@ -77,4 +118,6 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 			throw new UserDetailsDoesNotExist("User details does not exists");
 		}
 	}
+
+	
 }

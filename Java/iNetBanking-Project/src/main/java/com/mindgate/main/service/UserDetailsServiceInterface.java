@@ -10,4 +10,7 @@ public interface UserDetailsServiceInterface {
 	public ResponseEntity<?> verifylogin(UserDetails userDetails);
 	//admin login service
 	public ResponseEntity<?> verifyadminlogin(UserDetails userDetails);
+	
+	//Insert
+	public ResponseEntity<?> addUser(UserDetails userDetails);
 }

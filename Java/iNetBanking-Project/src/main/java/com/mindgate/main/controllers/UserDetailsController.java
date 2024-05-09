@@ -37,4 +37,10 @@ public class UserDetailsController {
 	public ResponseEntity<?> adminloginverfication(@RequestBody UserDetails userDetails){
 		return service.verifyadminlogin(userDetails);
 	}
+	
+	@PostMapping("adduser")
+	public ResponseEntity<?> addUserDetails(@RequestBody UserDetails userDetails){
+		System.out.println(userDetails);
+		return service.addUser(userDetails);
+	}
 }

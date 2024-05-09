@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ProblemDetail> userDetailsDoesNotExist(UserDetailsDoesNotExist userDetailsDoesNotExist) {
 		ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
 		problemDetail.setTitle("User details does not exist in the dB");
-		problemDetail.setType(URI.create("http://localhost:8080/userdetails/verifylogin"));
+		problemDetail.setType(URI.create("http://localhost:8080/userdetails/getbyId"));
 		problemDetail.setProperty("host", "localhost");
 		problemDetail.setProperty("port", "8080");
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail);
@@ -44,10 +44,21 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(LoginLimitException.class)
-	public ResponseEntity<ProblemDetail> passwordMismatch(LoginLimitException loginLimitException) {
+	public ResponseEntity<ProblemDetail> loginLimitException(LoginLimitException loginLimitException) {
 		ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
 		problemDetail.setTitle("Maximum limits reached!! Contact Administrator!");
 		problemDetail.setType(URI.create("http://localhost:8080/userdetails/verifylogin"));
+		problemDetail.setProperty("host", "localhost");
+		problemDetail.setProperty("port", "8080");
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail);
+
+	}
+	
+	@ExceptionHandler(UserAlreadyExists.class)
+	public ResponseEntity<ProblemDetail> userAlreadyExists(UserAlreadyExists userAlreadyExists) {
+		ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+		problemDetail.setTitle("User already exists, kindly login!");
+		problemDetail.setType(URI.create("http://localhost:8080/userdetails/adduser"));
 		problemDetail.setProperty("host", "localhost");
 		problemDetail.setProperty("port", "8080");
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail);
