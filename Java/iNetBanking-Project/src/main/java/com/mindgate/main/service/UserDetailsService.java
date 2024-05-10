@@ -20,44 +20,20 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 	@Autowired
 	private UserDetailsRepoInterface userDetailsRepo;
 	private AccountDetailsServiceInterface accountDetailsService;
-	
-	
-	
+
 	@Override
 	public ResponseEntity<?> addUser(UserDetails userDetails) {
-		if(userDetailsRepo.getById(userDetails.getEmailId()) != null) {
-			//already a user exception
-			
+		if (userDetailsRepo.userExists(userDetails.getEmailId()) != null) {
+			// already a user exception
+
 			throw new UserAlreadyExists("User already exists");
 		}
 		UserDetails details = userDetailsRepo.addUser(userDetails);
-		if(details != null)
+		if (details != null)
 			return new ResponseEntity<UserDetails>(details, HttpStatusCode.valueOf(200));
 		else
 			throw new UserNotAddedException("Internal Error");
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	@Override
 	public ResponseEntity<?> getById(String emailId) {
@@ -98,7 +74,7 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 	@Override
 	public ResponseEntity<?> verifyadminlogin(UserDetails userDetails) {
 		UserDetails details = userDetailsRepo.getById(userDetails.getEmailId());
-		System.out.println("!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@" + details);
+		// System.out.println("!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@" + details);
 		if (details.getUserType().equals("admin")) {
 
 			if (details.getPassword().equals(userDetails.getPassword()) && details.getLoginCount() < 3) {
@@ -119,5 +95,12 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 		}
 	}
 
-	
+	@Override
+	public ResponseEntity<?> getByUserId(int userId) {
+		if (userDetailsRepo.getByUserId(userId) != null)
+			return new ResponseEntity<UserDetails>(userDetailsRepo.getByUserId(userId), HttpStatusCode.valueOf(200));
+		else
+			throw new UserDetailsDoesNotExist();
+	}
+
 }

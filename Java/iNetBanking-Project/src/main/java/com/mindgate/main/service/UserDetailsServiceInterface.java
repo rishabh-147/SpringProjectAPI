@@ -6,6 +6,8 @@ import com.mindgate.main.domain.UserDetails;
 
 public interface UserDetailsServiceInterface {
 	public ResponseEntity<?> getById(String emailId);
+	
+	public ResponseEntity<?> getByUserId(int userId);
 	//Verification
 	public ResponseEntity<?> verifylogin(UserDetails userDetails);
 	//admin login service
@@ -13,4 +15,5 @@ public interface UserDetailsServiceInterface {
 	
 	//Insert
 	public ResponseEntity<?> addUser(UserDetails userDetails);
+	
 }

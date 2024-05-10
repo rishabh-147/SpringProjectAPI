@@ -18,6 +18,9 @@ public class AccountDetailsRepository implements AccountDetailsRepositoryInterfa
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+//	@Autowired
+//	UserDetailsRepoInterface userRepo;
+
 	private static final String GET_ALL_ACCOUNT = "select u.*,acc.* from user_details u inner join account_details acc on u.user_id = acc.user_id where acc.user_id=?";
 	private static final String INSERT_ACCOUNT = "INSERT INTO account_details (user_id, account_type, actual_balance, overderaft_opted, overdraft_balance, overdraft_charges) VALUES(?,?,?,?,?,?)";
 
@@ -25,10 +28,17 @@ public class AccountDetailsRepository implements AccountDetailsRepositoryInterfa
 
 	@Override
 	public AccountDetails addAccount(AccountDetails accountDetails) {
-		Object[] args = { accountDetails.getUserDetails(), accountDetails.getAccountType(),
-				accountDetails.getActualBalance(), accountDetails.getOvredraftedOpted(), OVERDRAFT_BALANCE,
-				accountDetails.getCharges() };
+		double overdraft = 0, odCharge = 0;
 
+		if (accountDetails.getOvredraftedOpted().equals("yes")) {
+			overdraft = OVERDRAFT_BALANCE;
+		}
+
+		//UserDetails userDetails = userRepo.getByUserId(accountDetails.getUserDetails().getUserId());
+		Object[] args = {accountDetails.getUserDetails().getUserId(), accountDetails.getAccountType(), accountDetails.getActualBalance(),
+				accountDetails.getOvredraftedOpted(), overdraft, odCharge };
+
+		System.out.println(args);
 		int res = jdbcTemplate.update(INSERT_ACCOUNT, args);
 		if (res > 0)
 			return accountDetails;

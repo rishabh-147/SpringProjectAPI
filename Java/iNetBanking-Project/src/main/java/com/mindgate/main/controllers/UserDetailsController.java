@@ -28,6 +28,12 @@ public class UserDetailsController {
 
 	}
 	
+	@GetMapping("getbyuserid/{userId}")
+	public ResponseEntity<?> getByUserId(@PathVariable("userId") int userId) {
+		return service.getByUserId(userId);
+
+	}
+	
 	@PostMapping("verifylogin")
 	public ResponseEntity<?> loginVerification(@RequestBody UserDetails userDetails) {
 		return service.verifylogin(userDetails);
@@ -40,7 +46,7 @@ public class UserDetailsController {
 	
 	@PostMapping("adduser")
 	public ResponseEntity<?> addUserDetails(@RequestBody UserDetails userDetails){
-		System.out.println(userDetails);
+		//System.out.println(userDetails);
 		return service.addUser(userDetails);
 	}
 }

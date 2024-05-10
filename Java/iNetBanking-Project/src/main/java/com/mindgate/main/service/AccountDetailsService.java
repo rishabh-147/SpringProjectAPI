@@ -19,5 +19,11 @@ public class AccountDetailsService  implements AccountDetailsServiceInterface{
 		
 	}
 	
+	
+	@Override
+	public AccountDetails addAccount(AccountDetails accountDetails) {
+		return accountDetailsRepositoryInterface.addAccount(accountDetails);
+	}
+	
 
 }
