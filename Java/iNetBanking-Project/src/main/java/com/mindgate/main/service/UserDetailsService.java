@@ -19,6 +19,7 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 
 	@Autowired
 	private UserDetailsRepoInterface userDetailsRepo;
+	@Autowired
 	private AccountDetailsServiceInterface accountDetailsService;
 
 	@Override
@@ -50,7 +51,7 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 		boolean res = false;
 
 		UserDetails details = userDetailsRepo.getById(email); // throws UserNotFoundException if user not found in repo
-//Login activbe if false deny login if true procceeeedd
+//Login activbe if false deny login if true proceed
 		if (details.getUserType().equals("user")) {
 
 			if (details.getPassword().equals(password) && details.getLoginCount() < 3) {
@@ -59,10 +60,11 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 				// check the current login count
 				if (details.getLoginCount() < 3) {
 					// update the loginCount by 1
-
-					throw new PasswordMismatchException("Abbbaaaaaa     jabbbaa dabbbaa");
+					userDetailsRepo.updateLogin(details.getUserId(), details.getLoginCount() + 1, "true");
+					throw new PasswordMismatchException("password do not match");
 				} else {
-					throw new LoginLimitException("Abbbaaaaaajabbbaa dabbbaa");
+					userDetailsRepo.updateLogin(userDetails.getUserId(), userDetails.getLoginCount() + 1, "true");
+					throw new LoginLimitException("you exceeded the login Limit");
 					// login >= 3 Max attempts reached
 				}
 			}
@@ -74,6 +76,7 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 	@Override
 	public ResponseEntity<?> verifyadminlogin(UserDetails userDetails) {
 		UserDetails details = userDetailsRepo.getById(userDetails.getEmailId());
+
 		// System.out.println("!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@" + details);
 		if (details.getUserType().equals("admin")) {
 
@@ -86,6 +89,7 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 
 					throw new PasswordMismatchException("Admin password Mismatch!!!");
 				} else {
+
 					throw new LoginLimitException("Maximum admin login limit reached , contact Developer Team");
 					// login >= 3 Max attempts reached
 				}

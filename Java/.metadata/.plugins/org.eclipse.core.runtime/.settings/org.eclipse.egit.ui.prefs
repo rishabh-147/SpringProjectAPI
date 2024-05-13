@@ -1,4 +1,5 @@
 RepositorySearchDialogSearchPath=D\:\\Project\\Java
+commit_dialog_history_messages=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<messages>\r\n<message>Added DTO and repo and service and controller</message>\r\n<message>Need to add LoginActive if false deny logion functionality in the verify&\#x0A;login</message>\r\n<message>Added userlogin and adminlogin functionality, working fully</message>\r\n<message>Adding verification controller</message>\r\n<message>Added one method for getLoginByID</message>\r\n<message>testing</message>\r\n<message>Testing</message>\r\n<message>Testing via eclipse</message>\r\n</messages>
 eclipse.preferences.version=1
 repositories_view_filters=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<FilterCache/>
 repository_push_settings_C\:\\Users\\MGSCHN-USER397\\git\\SpringProjectAPI\\.git=true;-

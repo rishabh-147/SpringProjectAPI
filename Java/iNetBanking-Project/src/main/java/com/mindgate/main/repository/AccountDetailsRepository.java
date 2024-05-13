@@ -49,26 +49,7 @@ public class AccountDetailsRepository implements AccountDetailsRepositoryInterfa
 	@Override
 	public List<AccountDetails> getById(int userId) {
 		try {
-			return jdbcTemplate.query(GET_ALL_ACCOUNT, new RowMapper<AccountDetails>() {
-
-				@Override
-				public AccountDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
-
-					UserDetails userDetails = new UserDetails(userId, rs.getString("first_name"),
-							rs.getString("last_name"), rs.getString("password"), rs.getDate("dob"),
-							rs.getString("user_type"), rs.getString("email_id"), rs.getString("gender"),
-							rs.getString("address"), rs.getLong("phone_number"), rs.getDate("reg_date"),
-							rs.getInt("login_count"), rs.getString("login_active"));
-
-					AccountDetails accountDetails = new AccountDetails(rs.getInt("account_number"), userDetails,
-							rs.getString("account_type"), rs.getString("account_status"),
-							rs.getDouble("actual_balance"), rs.getString("overderaft_opted"),
-							rs.getDouble("overdraft_balance"), rs.getDouble("overdraft_charges"));
-
-					return accountDetails;
-				}
-
-			}, userId);
+			return jdbcTemplate.query(GET_ALL_ACCOUNT, new AccountDetailsRowMapper(),userId);
 		} catch (Exception e) {
 			// throw exception
 			throw new UserDetailsDoesNotExist();

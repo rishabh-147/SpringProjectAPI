@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChequeDetails {
-	private int issuerAccountNumber;
-	private String cheque_number;
-	private int benificiaryAccountNumber;
-	private String depositDate;
+	private AccountDetails issuerAccountNumber;
+	private int cheque_number;
+	private AccountDetails benificiaryAccountNumber;
+	private Date depositDate;
 	private double chequeAmount;
 	private String chequeStatus;
 }

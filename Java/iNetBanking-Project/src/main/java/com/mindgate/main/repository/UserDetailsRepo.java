@@ -12,13 +12,13 @@ import com.mindgate.main.exception.UserDetailsDoesNotExist;
 public class UserDetailsRepo implements UserDetailsRepoInterface {
 
 	@Autowired
-	@Qualifier("jdbcTemplate")
 	private JdbcTemplate jdbcTemplate;
 
 	// STRINGS SQL
 	private static final String INSERT_USER = "INSERT INTO user_details (first_name, last_name, password, dob, user_type, Email_Id, Gender, address, phone_number, Reg_Date, login_count, login_active) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String GET_USER_BY_ID = "SELECT * FROM user_details WHERE email_id = ?";
 	private static final String GET_USER_BY_USERID = "SELECT * FROM user_details WHERE user_id = ?";
+	private static final String UPDATE_LOGIN_COUNT = "UPDATE user_details SET login_count = ?, login_active = ? WHERE user_id = ?";
 
 	@Override
 	public UserDetails addUser(UserDetails userDetails) {
@@ -63,12 +63,6 @@ public class UserDetailsRepo implements UserDetailsRepoInterface {
 	}
 
 	public UserDetails getByUserId(int userId) {
-
-		// System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" +
-		// userId);
-
-		// System.out.println("################################################" +
-		// jdbcTemplate);
 		UserDetails userDetails = jdbcTemplate.queryForObject(GET_USER_BY_USERID,
 				(rs, r) -> new UserDetails(userId, rs.getString("first_name"), rs.getString("last_name"),
 						rs.getString("password"), rs.getDate("dob"), rs.getString("user_type"),
@@ -99,7 +93,7 @@ public class UserDetailsRepo implements UserDetailsRepoInterface {
 					emailId);
 
 		} catch (Exception e) {
-			System.out.println("UserRepo.userExists--> "+e.getMessage());
+			System.out.println("UserRepo.userExists--> " + e.getMessage());
 			return null;
 		}
 
@@ -108,4 +102,25 @@ public class UserDetailsRepo implements UserDetailsRepoInterface {
 		return null;
 
 	}
+
+	public boolean updateLogin(int user_id, int loginCount, String loginActive) {
+		
+
+		if (loginCount >= 3)
+			loginActive = "false";
+		else
+			loginActive = "true";
+
+		Object[] args = { loginCount, loginActive, user_id };
+		
+		int res = jdbcTemplate.update(UPDATE_LOGIN_COUNT, args);
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$"+res);
+		System.out.println("------------------" + args[1]);
+		System.out.println("------------------" + args[2]);
+		System.out.println("------------------" + args[0]);
+		if (res > 0)
+			return true;
+		return false;
+	}
+
 }
