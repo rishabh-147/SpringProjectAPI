@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ChequeDetails {
 	private AccountDetails issuerAccountNumber;
-	private int cheque_number;
+	private String chequeNumber;
 	private AccountDetails benificiaryAccountNumber;
 	private Date depositDate;
 	private double chequeAmount;

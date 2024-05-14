@@ -6,5 +6,5 @@ import com.mindgate.main.domain.ChequeDetails;
 
 public interface ChequeDetailsRepositoryInterface {
 	public boolean AddChequeDetails(ChequeDetails chequeDetails);
-
+	public ChequeDetails getChequeDetails(String cheque_no);
 }

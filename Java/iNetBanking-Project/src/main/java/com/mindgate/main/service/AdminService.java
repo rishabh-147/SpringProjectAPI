@@ -24,12 +24,11 @@ public class AdminService implements AdminServiceInterface {
 		return new ResponseEntity<List<UserDetails>>(adminRepository.getAllInactiveUsers(),
 				HttpStatusCode.valueOf(200));
 	}
-	
+
 	@Override
 	public ResponseEntity<List<UserDetails>> getAllLockedUsers() {
-		
-		return new ResponseEntity<List<UserDetails>>(adminRepository.getAllLockedUsers(),
-				HttpStatusCode.valueOf(200));
+
+		return new ResponseEntity<List<UserDetails>>(adminRepository.getAllLockedUsers(), HttpStatusCode.valueOf(200));
 	}
 
 	@Override
@@ -43,7 +42,32 @@ public class AdminService implements AdminServiceInterface {
 		return new ResponseEntity<Boolean>(adminRepository.activateUser(userId), HttpStatusCode.valueOf(200));
 	}
 
+	@Override
+	public ResponseEntity<?> updateChequeStatus(ChequeDetails chequeDetails) {
 
+		return new ResponseEntity<Boolean>(adminRepository.updateChequeStatus(chequeDetails),
+				HttpStatusCode.valueOf(200));
+	}
+
+	@Override
+	public ResponseEntity<?> verifyChequeClearance(ChequeDetails chequeDetails) {
+		int f = 0;
+		double issuerAccountBalance = chequeDetails.getIssuerAccountNumber().getActualBalance();
+		double chequeAmount = chequeDetails.getChequeAmount();
+		if (chequeDetails.getIssuerAccountNumber().getAccountType().equalsIgnoreCase("saving")) {
+			if (issuerAccountBalance >= chequeAmount)
+				f = 1;
+		} else {
+			// In case of current account, overdraft also comes into picture
+			issuerAccountBalance += chequeDetails.getIssuerAccountNumber().getOverdraftBalance();
+			if (issuerAccountBalance >= chequeAmount)
+				f = 1;
+		}
+		if (f == 1)
+			return new ResponseEntity<Boolean>(true, HttpStatusCode.valueOf(200));
+		return new ResponseEntity<Boolean>(false, HttpStatusCode.valueOf(200));
+
+	}
 
 	/*
 	 * @Override public ResponseEntity<List<AccountDetails>> getAllSeizedAccount() {

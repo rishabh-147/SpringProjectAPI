@@ -58,6 +58,16 @@ public class AdminController {
 	}
 	
 	//update cheque status -- use verify account balance
-
+	
+	@PutMapping("update-cheque-status")
+	public ResponseEntity<?> updateChequeStatus(@RequestBody ChequeDetails chequeDetails){
+		return adminService.updateChequeStatus(chequeDetails);
+	}
+	
+	
+	@PostMapping("verify-clearance")
+	public ResponseEntity<?> verifyChequeClearance(@RequestBody ChequeDetails chequeDetails){
+		return adminService.verifyChequeClearance(chequeDetails);
+	}
 	
 }

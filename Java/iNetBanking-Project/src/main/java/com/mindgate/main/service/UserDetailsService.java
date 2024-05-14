@@ -54,7 +54,7 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 //Login activbe if false deny login if true proceed
 		if (details.getUserType().equals("user")) {
 
-			if (details.getPassword().equals(password) && details.getLoginCount() < 3) {
+			if (details.getPassword().equals(password) && details.getLoginCount() < 3 && details.getLoginActive().equals("true")) {
 				return new ResponseEntity<UserDetails>(details, HttpStatusCode.valueOf(200));
 			} else {
 				// check the current login count

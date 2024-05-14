@@ -20,13 +20,13 @@ public class AdminReopsitory implements AdminRepositoryInterface {
 	private JdbcTemplate jdbcTemplate;
 
 	private static final String GET_ALL_INACTIVE_USERS = "SELECT * FROM user_details WHERE login_active = 'false' AND login_count = 0";
-	private static final String GET_ALL_CHEQUE_UNCLEARED = "SELECT a.*, b.ACCOUNT_NUMBER AS issuer_account_number, b.USER_ID AS issuer_user_id, b.ACCOUNT_TYPE AS issuer_account_type, b.ACCOUNT_STATUS AS issuer_account_status, b.ACTUAL_BALANCE AS issuer_actual_balance, b.OVERDERAFT_OPTED AS issuer_overdraft_opted, b.OVERDRAFT_BALANCE AS issuer_overdraft_balance, b.OVERDRAFT_CHARGES AS issuer_overdraft_charges, c.ACCOUNT_NUMBER AS bf_account_number, c.USER_ID AS bf_user_id, c.ACCOUNT_TYPE AS bf_account_type, c.ACCOUNT_STATUS AS bf_account_status, c.ACTUAL_BALANCE AS bf_actual_balance, c.OVERDERAFT_OPTED AS bf_overdraft_opted, c.OVERDRAFT_BALANCE AS bf_overdraft_balance, c.OVERDRAFT_CHARGES AS bf_overdraft_charges FROM ACCOUNT_DETAILS b JOIN cheque_details a ON a.issuer_account_no = b.ACCOUNT_NUMBER JOIN ACCOUNT_DETAILS c ON a.benificiary_account_no = c.ACCOUNT_NUMBER WHERE a.cheque_status IN('Not recieved', 'sent for clearance')";
+	private static final String GET_ALL_CHEQUE_UNCLEARED = "SELECT a.*, b.ACCOUNT_NUMBER AS issuer_account_number, b.USER_ID AS issuer_user_id, b.ACCOUNT_TYPE AS issuer_account_type, b.ACTUAL_BALANCE AS issuer_actual_balance, b.OVERDERAFT_OPTED AS issuer_overdraft_opted, b.OVERDRAFT_BALANCE AS issuer_overdraft_balance, b.OVERDRAFT_CHARGES AS issuer_overdraft_charges, c.ACCOUNT_NUMBER AS bf_account_number, c.USER_ID AS bf_user_id, c.ACCOUNT_TYPE AS bf_account_type, c.ACTUAL_BALANCE AS bf_actual_balance, c.OVERDERAFT_OPTED AS bf_overdraft_opted, c.OVERDRAFT_BALANCE AS bf_overdraft_balance, c.OVERDRAFT_CHARGES AS bf_overdraft_charges FROM ACCOUNT_DETAILS b JOIN cheque_details a ON a.issuer_account_no = b.ACCOUNT_NUMBER JOIN ACCOUNT_DETAILS c ON a.benificiary_account_no = c.ACCOUNT_NUMBER WHERE a.cheque_status IN('Not recieved', 'sent for clearence')";
 //	private static final String GET_ALL_SEIZED_ACCOUNT = "SELECT * FROM account_details a JOIN user_details u ON a.user_id = u.user_id WHERE account_status = 'false'";
 	private static final String ACTIVATE_USER_LOGIN = "UPDATE user_details SET login_active = 'true', login_count= 0 WHERE user_id =?";
-	private static final String VERIFY_CHEQUE_DETAILS = "UPDATE cheque_details SET cheque_status = ?";			
+	private static final String VERIFY_CHEQUE_DETAILS = "UPDATE cheque_details SET cheque_status = ?";
 	private static final String GET_ALL_LOCKED_USERS = "SELECT * FROM user_details WHERE login_active = 'false' AND login_count = 3";
-//	private static final String UPDATE_CHEQUE_STATUS = "UPDATE ";
-	
+	private static final String UPDATE_CHEQUE_STATUS = "UPDATE cheque_details SET cheque_status = ? WHERE cheque_no = ?";
+
 	@Override
 	public List<UserDetails> getAllInactiveUsers() {
 		List<UserDetails> details = jdbcTemplate.query(GET_ALL_INACTIVE_USERS,
@@ -61,19 +61,25 @@ public class AdminReopsitory implements AdminRepositoryInterface {
 	 * jdbcTemplate.query(GET_ALL_SEIZED_ACCOUNT, new AccountDetailsRowMapper()); if
 	 * (seizedAccount != null) return seizedAccount; return null; }
 	 */
+	
 	@Override
 	public boolean activateUser(int userId) {
-		
+
 		int res = jdbcTemplate.update(ACTIVATE_USER_LOGIN, userId);
-		
-		if(res > 0)
+
+		if (res > 0)
 			return true;
 		return false;
 	}
 
 	@Override
-	public boolean updateChequeStatus() {
-		// TODO Auto-generated method stub
+	public boolean updateChequeStatus(ChequeDetails chequeDetails) {
+		String chequeStatus = chequeDetails.getChequeStatus(); String chequeNumber= chequeDetails.getChequeNumber();
+		Object[] args = { chequeStatus, chequeNumber };
+		int res = jdbcTemplate.update(UPDATE_CHEQUE_STATUS, args);
+
+		if (res > 0)
+			return true;
 		return false;
 	}
 

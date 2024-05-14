@@ -12,9 +12,13 @@ public interface AdminServiceInterface {
 	public ResponseEntity<List<UserDetails>> getAllInactiveUsers();
 
 	public ResponseEntity<List<UserDetails>> getAllLockedUsers();
-	
+
 	ResponseEntity<List<ChequeDetails>> getAllUnclearedCheques();
-	
+
 	public ResponseEntity<?> activateUser(int userId);
-	//public ResponseEntity<List<AccountDetails>> getAllSeizedAccount();
+	// public ResponseEntity<List<AccountDetails>> getAllSeizedAccount();
+
+	public ResponseEntity<?> updateChequeStatus(ChequeDetails chequeDetails);
+
+	public ResponseEntity<?> verifyChequeClearance(ChequeDetails chequeDetails);
 }

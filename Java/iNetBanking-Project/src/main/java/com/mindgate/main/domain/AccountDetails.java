@@ -11,7 +11,7 @@ public class AccountDetails {
 	private int accountNumber;
 	private UserDetails userDetails;
 	private String accountType;
-	//private String accountStatus;
+	// private String accountStatus;
 	private double actualBalance;
 	private String OvredraftedOpted;
 	private double overdraftBalance;

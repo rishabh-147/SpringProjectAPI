@@ -21,7 +21,11 @@ public interface AdminRepositoryInterface {
 
 	// update for cheque
 		//1. bounced and clear
-	public boolean updateChequeStatus();
+	public boolean updateChequeStatus(ChequeDetails chequeDetails);
+
+	
+
+	
 	
 	
 	
