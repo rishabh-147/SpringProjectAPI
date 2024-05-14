@@ -20,16 +20,17 @@ import com.mindgate.main.service.ChequeDetailsServiceInterface;
 @CrossOrigin("http://localhost/4200")
 public class ChequeDetailsController {
 	@Autowired
-	private ChequeDetailsServiceInterface chequeDetailsServiceInterface;
+	private ChequeDetailsServiceInterface chequeDetailsService;
+	
 	@PutMapping("create-cheque")
 	public boolean AddChequeDetail(@RequestBody ChequeDetails chequeDetails) {
-		boolean result=chequeDetailsServiceInterface.AddChequeDetails(chequeDetails);
+		boolean result=chequeDetailsService.AddChequeDetails(chequeDetails);
 		return result;
 	}
 	
 	@GetMapping("get-cheque/{chequeNumber}")
 	public ResponseEntity<?> getChequeDetail(@PathVariable String chequeNumber){
-		return chequeDetailsServiceInterface.getChequeDetails(chequeNumber);
+		return chequeDetailsService.getChequeDetails(chequeNumber);
 	}
 
 }
