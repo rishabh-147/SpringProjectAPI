@@ -43,4 +43,7 @@ public class AccountDetailsController {
 		AccountDetails details = accountDetailsServiceInterface.addAccount(accountDetails);
 		return details;
 	}
+	
+	
+	
 }

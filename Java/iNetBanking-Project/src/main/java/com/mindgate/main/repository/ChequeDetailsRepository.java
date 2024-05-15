@@ -11,15 +11,16 @@ import com.mindgate.main.domain.ChequeDetails;
 public class ChequeDetailsRepository implements ChequeDetailsRepositoryInterface {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	private static final String INSERT_INTO_CHECK = "INSERT INTO Cheque_details (issuer_account_no, cheque_no, benificiary_account_no, deposit_date, cheque_amount, cheque_status)values(?,?,?,?,?,?)";
+	private static final String INSERT_INTO_CHECK = "INSERT INTO Cheque_details (issuer_account_no,benificiary_account_no, deposit_date, cheque_amount, cheque_status)values(?,?,?,?,?)";
 	private static final String GET_CHEQUE_DETAILS = "SELECT * FROM cheque_details WHERE cheque_no = ?";
 
 	@Override
 	public boolean AddChequeDetails(ChequeDetails chequeDetails) {
-		Object[] parameters = { chequeDetails.getIssuerAccountNumber(), chequeDetails.getChequeNumber(),
-				chequeDetails.getBenificiaryAccountNumber(), chequeDetails.getDepositDate(),
+		Object[] parameters = { chequeDetails.getIssuerAccountNumber().getAccountNumber(), 
+				chequeDetails.getBenificiaryAccountNumber().getAccountNumber(), chequeDetails.getDepositDate(),
 				chequeDetails.getChequeAmount(), chequeDetails.getChequeStatus() };
 
+		
 		int result = jdbcTemplate.update(INSERT_INTO_CHECK, parameters);
 		if (result > 0) {
 			return true;

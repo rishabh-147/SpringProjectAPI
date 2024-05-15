@@ -52,9 +52,9 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 
 		UserDetails details = userDetailsRepo.getById(email); // throws UserNotFoundException if user not found in repo
 //Login activbe if false deny login if true proceed
-		if (details.getUserType().equals("user")) {
+		if (details.getUserType().equals("user") && details.getLoginActive().equals("true")) { //added true condition
 
-			if (details.getPassword().equals(password) && details.getLoginCount() < 3 && details.getLoginActive().equals("true")) {
+			if (details.getPassword().equals(password) && details.getLoginCount() < 3 ) {
 				return new ResponseEntity<UserDetails>(details, HttpStatusCode.valueOf(200));
 			} else {
 				// check the current login count

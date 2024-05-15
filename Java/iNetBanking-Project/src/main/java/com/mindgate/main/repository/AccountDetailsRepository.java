@@ -23,7 +23,8 @@ public class AccountDetailsRepository implements AccountDetailsRepositoryInterfa
 
 	private static final String GET_ALL_ACCOUNT = "select u.*,acc.* from user_details u inner join account_details acc on u.user_id = acc.user_id where acc.user_id=?";
 	private static final String INSERT_ACCOUNT = "INSERT INTO account_details (user_id, account_type, actual_balance, overderaft_opted, overdraft_balance, overdraft_charges) VALUES(?,?,?,?,?,?)";
-
+	private static final String UPDATE_ACCOUNT= "UPDATE account_details SET actual_balance = ?, overdraft_balance = ?, overdraft_charges=? WHERE account_number = ?";
+	
 	private static final double OVERDRAFT_BALANCE = 50000.00;
 
 	@Override
@@ -55,6 +56,16 @@ public class AccountDetailsRepository implements AccountDetailsRepositoryInterfa
 			throw new UserDetailsDoesNotExist();
 		}
 
+	}
+
+	@Override
+	public AccountDetails updateAccount(AccountDetails accountDetails) {
+		
+		
+		
+		
+		Object[] args = {accountDetails.getActualBalance(), accountDetails.getOverdraftBalance(), accountDetails.getCharges(), accountDetails.getAccountNumber() };
+		return null;
 	}
 
 }
