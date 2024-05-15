@@ -1,36 +1,36 @@
-User Details
+Here are the complete URLs for the endpoints in your `UserDetails` class:
 1. GET /userdetails/getbyid/{emailId}
 
 Retrieves user details by email ID.
-Example URL: http://localhost:8080/userdetails/getbyid/{emailId}
+Example URL: `http://localhost:8080/userdetails/getbyid/{emailId}`
 Method: GET
 Path Variable: emailId (String)
 
 2. GET /userdetails/getbyuserid/{userId}
 
 Retrieves user details by user ID.
-Example URL: http://localhost:8080/userdetails/getbyuserid/{userId}
+Example URL: `http://localhost:8080/userdetails/getbyuserid/{userId}`
 Method: GET
 Path Variable: userId (int)
 
 3. POST /userdetails/verifylogin
 
 Verifies user login.
-Example URL: http://localhost:8080/userdetails/verifylogin
+Example URL: `http://localhost:8080/userdetails/verifylogin`
 Method: POST
 Request Body: UserDetails object
 
 4. POST /userdetails/adminlogin
 
 Verifies admin login.
-Example URL: http://localhost:8080/userdetails/adminlogin
+Example URL: `http://localhost:8080/userdetails/adminlogin`
 Method: POST
 Request Body: UserDetails object
 
 5.POST /userdetails/adduser
 
 Adds user details.
-Example URL: http://localhost:8080/userdetails/adduser
+Example URL: `http://localhost:8080/userdetails/adduser`
 Method: POST
 Request Body: UserDetails object
 
