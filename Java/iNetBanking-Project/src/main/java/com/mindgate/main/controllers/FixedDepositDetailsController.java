@@ -19,7 +19,7 @@ import com.mindgate.main.service.UserDetailsServiceInterface;
 
 @RestController
 @RequestMapping("fddetails")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("http://localhost:4200/")
 public class FixedDepositDetailsController {
 	
 	@Autowired

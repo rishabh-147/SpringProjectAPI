@@ -36,6 +36,12 @@ public class AccountDetailsController {
 		}
 
 	}
+	
+	
+	@GetMapping("get-by-accNum/{accNum}")
+	public ResponseEntity<?> getByAccNum(@PathVariable("accNum") long accountNumber){
+		return accountDetailsServiceInterface.getByAccount(accountNumber);
+	}
 
 	// Use this when passing userId
 	@PostMapping("addaccount")
@@ -43,6 +49,8 @@ public class AccountDetailsController {
 		AccountDetails details = accountDetailsServiceInterface.addAccount(accountDetails);
 		return details;
 	}
+	
+	
 	
 	
 	

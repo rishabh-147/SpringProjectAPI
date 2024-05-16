@@ -17,7 +17,7 @@ import com.mindgate.main.service.ChequeDetailsServiceInterface;
 
 @RestController
 @RequestMapping("chequedetails")
-@CrossOrigin("http://localhost/4200")
+@CrossOrigin("http://localhost:4200/")
 public class ChequeDetailsController {
 	@Autowired
 	private ChequeDetailsServiceInterface chequeDetailsService;

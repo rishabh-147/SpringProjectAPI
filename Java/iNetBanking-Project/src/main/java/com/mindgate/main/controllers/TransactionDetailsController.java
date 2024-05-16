@@ -18,7 +18,7 @@ import com.mindgate.main.service.TransactionDetailsServiceInterface;
 
 @RestController
 @RequestMapping("transactionsdetails")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("http://localhost:4200/")
 public class TransactionDetailsController {
 
 	@Autowired
@@ -34,5 +34,10 @@ public class TransactionDetailsController {
 	@GetMapping("getall/{accNumber}")
 	public ResponseEntity<List<TransactionDetails>> getAllIssuerAcc(@PathVariable long accNumber){
 		return transactionDetailsService.getbyIssuerAccId(accNumber);
+	}
+	
+	@PostMapping("process-transaction")
+	public ResponseEntity<?> processTransaction(@RequestBody TransactionDetails transactionDetails){
+		return transactionDetailsService.performTransaction(transactionDetails);
 	}
 }
