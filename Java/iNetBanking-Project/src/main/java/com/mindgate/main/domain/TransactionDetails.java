@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TransactionDetails {
 	private int transactionId;
-	private long issuerAccountNumber;
-	private long benificiaryAccountNumber;
+	private AccountDetails issuerAccountDetails;
+	private AccountDetails benificiaryAccountDetails;
 	private String transactionType;
 	private String transactionMode;
 	private  double transactionAmount;

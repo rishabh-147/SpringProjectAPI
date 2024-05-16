@@ -8,4 +8,5 @@ public interface TransactionDetailsRepositoryInterface {
 	public boolean addTransactionDetails(TransactionDetails transactionDetails);
 
 	public List<TransactionDetails> getbyIssuerAccId(long accNumber);
+
 }

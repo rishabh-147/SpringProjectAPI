@@ -19,8 +19,7 @@ public interface AdminRepositoryInterface {
 	//get all cheque validation	-- give cheque having status as NOT RECEIVED, SENT FOR CLEARANCE;
 	public List<ChequeDetails> getAllUnClearedCheques();
 
-	// update for cheque
-		//1. bounced and clear
+	// update for cheque bounced and clear
 	public boolean updateChequeStatus(ChequeDetails chequeDetails);
 
 	

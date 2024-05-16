@@ -23,6 +23,7 @@ public class ChequeDetailsRowMapper implements RowMapper<ChequeDetails>{
 		issuerAccount.setAccountType(rs.getString("issuer_account_type"));
 		issuerAccount.setUserDetails(issuerDetails);
 		issuerDetails.setUserId(rs.getInt("issuer_user_id"));	
+		issuerDetails.setEmailId(rs.getString("issuer_email"));
 		issuerAccount.setActualBalance(rs.getDouble("issuer_actual_balance"));
 		issuerAccount.setCharges(rs.getDouble("issuer_overdraft_charges"));
 		issuerAccount.setOverdraftBalance(rs.getDouble("issuer_overdraft_balance"));
@@ -37,6 +38,7 @@ public class ChequeDetailsRowMapper implements RowMapper<ChequeDetails>{
 		beneficiaryAccount.setAccountType(rs.getString("bf_account_type"));
 		beneficiaryAccount.setUserDetails(beneficiaryDetails);
 		beneficiaryDetails.setUserId(rs.getInt("bf_user_id"));
+		beneficiaryDetails.setEmailId(rs.getString("beneficiary_email"));
 		beneficiaryAccount.setActualBalance(rs.getDouble("bf_actual_balance"));
 		beneficiaryAccount.setCharges(rs.getDouble("bf_overdraft_charges"));
 		beneficiaryAccount.setOverdraftBalance(rs.getDouble("bf_overdraft_balance"));

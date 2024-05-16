@@ -1,6 +1,0 @@
-package com.mindgate.main.repository;
-
-public class UserDetailsRepoInterface {
-
-	public UserDetails getById(String email);
-}
