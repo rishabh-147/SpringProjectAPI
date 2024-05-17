@@ -15,9 +15,6 @@
 - **Method:** POST
 
 ----------------------------------------------------------------------------------------------------------------------------------------
-
-# API Endpoints
-
 ## AdminController
 
 ### Get All Inactive Users
@@ -45,9 +42,6 @@
 - **Method:** POST
 
 ----------------------------------------------------------------------------------------------------------------------------------------
-
-# API Endpoints
-
 ## ChequeDetailsController
 
 ### Create Cheque
@@ -62,8 +56,6 @@
 - **Endpoint:** `/chequedetails/get-cheques-by-acc/{accountNumber}`
 - **Method:** GET
 ----------------------------------------------------------------------------------------------------------------------------------------
-# API Endpoints
-
 ## FixedDepositDetailsController
 
 ### Create Fixed Deposit
@@ -75,8 +67,6 @@
 - **Method:** GET
 
 ----------------------------------------------------------------------------------------------------------------------------------------
-# API Endpoints
-
 ## UserDetailsController
 
 ### Get User Details by Email ID
@@ -100,8 +90,6 @@
 - **Method:** POST
 
 ----------------------------------------------------------------------------------------------------------------------------------------
-# API Endpoints
-
 ## TransactionDetailsController
 
 ### Add Transaction Details
