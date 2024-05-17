@@ -1,123 +1,119 @@
-Here are the complete URLs for the endpoints in your `UserDetails` class:
-1. GET /userdetails/getbyid/{emailId}
+# API Endpoints
 
-- Retrieves user details by email ID.
-- Example URL: `http://localhost:8080/userdetails/getbyid/{emailId}`
-- Method: GET
-- Path Variable: emailId (String)
+## AccountDetailsController
 
-2. GET /userdetails/getbyuserid/{userId}
+### Get Account Details by User ID
+- **Endpoint:** `/accountdetails/getbyid/{userId}`
+- **Method:** GET
 
-- Retrieves user details by user ID.
-- Example URL: `http://localhost:8080/userdetails/getbyuserid/{userId}`
-- Method: GET
-- Path Variable: userId (int)
+### Get Account Details by Account Number
+- **Endpoint:** `/accountdetails/get-acc-by-accNum/{accNum}`
+- **Method:** GET
 
-3. POST /userdetails/verifylogin
-
-- Verifies user login.
-- Example URL: `http://localhost:8080/userdetails/verifylogin`
-- Method: POST
-- Request Body: UserDetails object
-
-4. POST /userdetails/adminlogin
-
-- Verifies admin login.
-- Example URL: `http://localhost:8080/userdetails/adminlogin`
-- Method: POST
-- Request Body: UserDetails object
-
-5.POST /userdetails/adduser
-
-- Adds user details.
-- Example URL: `http://localhost:8080/userdetails/adduser`
-- Method: POST
-- Request Body: UserDetails object
+### Add Account
+- **Endpoint:** `/accountdetails/addaccount`
+- **Method:** POST
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-Here are the complete URLs for the endpoints in your `AdminController` class:
+# API Endpoints
 
-1. **GET /admin-controller/get-inactive-user**
-   - Retrieves all inactive users.
-   - Example URL: `http://localhost:8080/admin-controller/get-inactive-user`
-   - Method: GET
+## AdminController
 
-2. **GET /admin-controller/get-locked-user**
-   - Retrieves all locked users.
-   - Example URL: `http://localhost:8080/admin-controller/get-locked-user`
-   - Method: GET
+### Get All Inactive Users
+- **Endpoint:** `/admin-controller/get-inactive-user`
+- **Method:** GET
 
-3. **GET /admin-controller/get-uncleared-cheque**
-   - Retrieves all uncleared cheques.
-   - Example URL: `http://localhost:8080/admin-controller/get-uncleared-cheque`
-   - Method: GET
+### Get All Locked Users
+- **Endpoint:** `/admin-controller/get-locked-user`
+- **Method:** GET
 
-4. **PUT /admin-controller/activate-user/{userId}**
-   - Activates a user by user ID.
-   - Example URL: `http://localhost:8080/admin-controller/activate-user/{userId}`
-   - Method: PUT
-   - Path Variable: userId (int)
+### Get All Uncleared Cheques
+- **Endpoint:** `/admin-controller/get-uncleared-cheque`
+- **Method:** GET
 
-5. **PUT /admin-controller/update-cheque-status**
-   - Updates cheque status.
-   - Example URL: `http://localhost:8080/admin-controller/update-cheque-status`
-   - Method: PUT
-   - Request Body: ChequeDetails object
+### Activate User
+- **Endpoint:** `/admin-controller/activate-user/{userId}`
+- **Method:** PUT
 
-6. **POST /admin-controller/verify-clearance**
-   - Verifies cheque clearance.
-   - Example URL: `http://localhost:8080/admin-controller/verify-clearance`
-   - Method: POST
-   - Request Body: ChequeDetails object
+### Update Cheque Status
+- **Endpoint:** `/admin-controller/update-cheque-status`
+- **Method:** PUT
+
+### Verify Cheque Clearance
+- **Endpoint:** `/admin-controller/verify-clearance`
+- **Method:** POST
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-Here are the complete URLs for the endpoints in your `ChequeDetailsController` class:
+# API Endpoints
 
-1. **PUT /chequedetails/create-cheque**
-   - Adds cheque details.
-   - Example URL: `http://localhost:8080/chequedetails/create-cheque`
-   - Method: PUT
-   - Request Body: ChequeDetails object
+## ChequeDetailsController
 
-2. **GET /chequedetails/get-cheque/{chequeNumber}**
-   - Retrieves cheque details by cheque number.
-   - Example URL: `http://localhost:8080/chequedetails/get-cheque/{chequeNumber}`
-   - Method: GET
-   - Path Variable: chequeNumber (String)
+### Create Cheque
+- **Endpoint:** `/chequedetails/create-cheque`
+- **Method:** PUT
+
+### Get Cheque Detail by Cheque Number
+- **Endpoint:** `/chequedetails/get-cheque/{chequeNumber}`
+- **Method:** GET
+
+### Get Cheques by Account Number
+- **Endpoint:** `/chequedetails/get-cheques-by-acc/{accountNumber}`
+- **Method:** GET
+----------------------------------------------------------------------------------------------------------------------------------------
+# API Endpoints
+
+## FixedDepositDetailsController
+
+### Create Fixed Deposit
+- **Endpoint:** `/fddetails/create-fd`
+- **Method:** POST
+
+### Get All Fixed Deposits by User ID
+- **Endpoint:** `/fddetails/getAll/{userId}`
+- **Method:** GET
 
 ----------------------------------------------------------------------------------------------------------------------------------------
+# API Endpoints
 
-Here are the complete URLs for the endpoints in your `FixedDepositDetailsController` class:
+## UserDetailsController
 
-1. **POST /fddetails/create-fd**
-   - Adds fixed deposit details.
-   - Example URL: `http://localhost:8080/fddetails/create-fd`
-   - Method: POST
-   - Request Body: FixedDepositDetails object
+### Get User Details by Email ID
+- **Endpoint:** `/userdetails/getbyid/{emailId}`
+- **Method:** GET
 
-2. **GET /fddetails/getAll/{userId}**
-   - Retrieves all fixed deposits by user ID.
-   - Example URL: `http://localhost:8080/fddetails/getAll/{userId}`
-   - Method: GET
-   - Path Variable: userId (int)
+### Get User Details by User ID
+- **Endpoint:** `/userdetails/getbyuserid/{userId}`
+- **Method:** GET
+
+### Verify Login
+- **Endpoint:** `/userdetails/verifylogin`
+- **Method:** POST
+
+### Admin Login Verification
+- **Endpoint:** `/userdetails/adminlogin`
+- **Method:** POST
+
+### Add User
+- **Endpoint:** `/userdetails/adduser`
+- **Method:** POST
 
 ----------------------------------------------------------------------------------------------------------------------------------------
-Here are the complete URLs for the endpoints in your `TransactionDetailsController` class:
+# API Endpoints
 
-1. **POST /transactionsdetails/add-details**
-   - Adds transaction details.
-   - Example URL: `http://localhost:8080/transactionsdetails/add-details`
-   - Method: POST
-   - Request Body: TransactionDetails object
+## TransactionDetailsController
 
-2. **GET /transactionsdetails/getall/{accNumber}**
-   - Retrieves all transaction details by issuer account number.
-   - Example URL: `http://localhost:8080/transactionsdetails/getall/{accNumber}`
-   - Method: GET
-   - Path Variable: accNumber (long)
-----------------------------------------------------------------------------------------------------------------------------------------
+### Add Transaction Details
+- **Endpoint:** `/transactionsdetails/add-details`
+- **Method:** POST
 
+### Get All Transaction Details by Account Number
+- **Endpoint:** `/transactionsdetails/getall/{accNumber}`
+- **Method:** GET
+
+### Process Transaction
+- **Endpoint:** `/transactionsdetails/process-transaction`
+- **Method:** POST
 
 
