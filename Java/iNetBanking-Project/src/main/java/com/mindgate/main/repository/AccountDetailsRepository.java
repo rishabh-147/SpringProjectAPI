@@ -27,9 +27,7 @@ public class AccountDetailsRepository implements AccountDetailsRepositoryInterfa
 	private static final String INSERT_ACCOUNT = "INSERT INTO account_details (user_id, account_type, actual_balance, overderaft_opted, overdraft_balance, overdraft_charges) VALUES(?,?,?,?,?,?)";
 	private static final String UPDATE_ACCOUNT = "UPDATE account_details SET actual_balance = ?, overdraft_balance = ?, overdraft_charges=? WHERE account_number = ?";
 	private static final String GET_BY_ACCOUNT="select u.*,acc.* from user_details u inner join account_details acc on u.user_id = acc.user_id where acc.account_number=?";
-	
-	
-	private static final double MIN_BALANCE = 5000.00;
+
 	private static final double OVERDRAFT_BALANCE = 50000.00;
 
 	@Override
@@ -38,6 +36,8 @@ public class AccountDetailsRepository implements AccountDetailsRepositoryInterfa
 
 		if (accountDetails.getOvredraftedOpted().equals("yes")) {
 			overdraft = OVERDRAFT_BALANCE;
+		}else {
+			accountDetails.setOvredraftedOpted("no");
 		}
 
 		// UserDetails userDetails =

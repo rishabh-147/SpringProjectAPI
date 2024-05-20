@@ -37,17 +37,15 @@ public class AccountDetailsController {
 
 	}
 	
-	
-	@GetMapping("get-by-accNum/{accNum}")
+	@GetMapping("get-acc-by-accNum/{accNum}")
 	public ResponseEntity<?> getByAccNum(@PathVariable("accNum") long accountNumber){
 		return accountDetailsServiceInterface.getByAccount(accountNumber);
 	}
 
 	// Use this when passing userId
 	@PostMapping("addaccount")
-	public AccountDetails addAccount(@RequestBody AccountDetails accountDetails) {
-		AccountDetails details = accountDetailsServiceInterface.addAccount(accountDetails);
-		return details;
+	public ResponseEntity<?>  addAccount(@RequestBody AccountDetails accountDetails) {
+		return accountDetailsServiceInterface.addAccount(accountDetails);
 	}
 	
 	

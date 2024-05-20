@@ -53,6 +53,12 @@
 			<scope>provided</scope>
 		</dependency>
 
+<!--Email Dependency-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+			<version>3.1.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>

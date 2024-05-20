@@ -1,5 +1,7 @@
 package com.mindgate.main.repository;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,7 +27,7 @@ public class UserDetailsRepo implements UserDetailsRepoInterface {
 		Object[] args = { userDetails.getFirstName(), userDetails.getLastName(), userDetails.getPassword(),
 				userDetails.getDateOfBirth(), userDetails.getUserType(), userDetails.getEmailId(),
 				userDetails.getGender(), userDetails.getAddress(), userDetails.getPhoneNumber(),
-				userDetails.getRegistrationDate(), userDetails.getLoginCount(), userDetails.getLoginActive() };
+				LocalDateTime.now(), userDetails.getLoginCount(), userDetails.getLoginActive() };
 
 		int result = jdbcTemplate.update(INSERT_USER, args);
 
