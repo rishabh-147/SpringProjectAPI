@@ -10,5 +10,4 @@ public interface TransactionDetailsServiceInterface {
 	public ResponseEntity<?> addTransactionDetails(TransactionDetails transactionDetails);
 	public ResponseEntity<List<TransactionDetails>> getbyIssuerAccId(long accNumber);
 	ResponseEntity<Boolean> performTransaction(TransactionDetails details);
-	public ResponseEntity<Boolean> bouncedCheque(TransactionDetails details);
 }
