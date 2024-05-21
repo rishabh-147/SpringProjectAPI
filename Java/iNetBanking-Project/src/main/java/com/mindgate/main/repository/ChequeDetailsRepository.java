@@ -16,7 +16,7 @@ public class ChequeDetailsRepository implements ChequeDetailsRepositoryInterface
 	private static final String INSERT_INTO_CHEQUE = "INSERT INTO Cheque_details (issuer_account_no)values(?)";
 	private static final String GET_CHEQUE_DETAILS = "SELECT * FROM cheque_details WHERE cheque_no = ?";
 	private static final String GET_BY_ACCOUNT="SELECT u.*, acc_issuer.* FROM Cheque_details u INNER JOIN account_details acc_issuer ON u.issuer_account_no = acc_issuer.account_number WHERE u.issuer_account_no = ?";
-	private static final String UPDATE_CHEQUE = "UPDATE cheque-details SET benificiary_account_no=?,deposit_date=?,cheque_amount=?,cheque_status=? WHERE cheque_no=?";
+	private static final String UPDATE_CHEQUE = "UPDATE cheque_details SET benificiary_account_no=?,deposit_date=?,cheque_amount=?,cheque_status=? WHERE cheque_no=?";
 
 	@Override
 	public boolean AddChequeDetails(ChequeDetails chequeDetails) {
@@ -32,7 +32,7 @@ public class ChequeDetailsRepository implements ChequeDetailsRepositoryInterface
 	public boolean updateCheque(ChequeDetails chequeDetails) {
 		Object[] args = {chequeDetails.getBenificiaryAccountNumber().getAccountNumber(), chequeDetails.getDepositDate(), chequeDetails.getChequeAmount(), chequeDetails.getChequeStatus(), chequeDetails.getChequeNumber()};
 		int res = jdbcTemplate.update(UPDATE_CHEQUE, args);
-		if(res > 0)
+		if(res > 0)	
 			return true;
 		return false;
 	}

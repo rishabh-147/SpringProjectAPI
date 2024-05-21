@@ -26,9 +26,8 @@ public class TransactionDetailsController {
 	
 	
 	@PostMapping("add-details")
-	public boolean AddFixedDetail(@RequestBody TransactionDetails transactionDetails) {
-		boolean result =transactionDetailsService.addTransactionDetails(transactionDetails);
-		return result;
+	public ResponseEntity<?> AddFixedDetail(@RequestBody TransactionDetails transactionDetails) {
+		return transactionDetailsService.addTransactionDetails(transactionDetails);
 	}
 	
 	@GetMapping("getall/{accNumber}")

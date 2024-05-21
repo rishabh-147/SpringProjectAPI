@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import com.mindgate.main.domain.AccountDetails;
 
 public interface AccountDetailsServiceInterface {
-	public List<AccountDetails>  getById(int userId);
+	public ResponseEntity<List<AccountDetails>>  getById(int userId);
 	public ResponseEntity<?> addAccount(AccountDetails accountDetails);
 	public ResponseEntity<AccountDetails> getByAccount(long accounNumber);
 

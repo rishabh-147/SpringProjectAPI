@@ -8,9 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.mindgate.main.domain.AccountDetails;
-import com.mindgate.main.domain.ChequeDetails;
 import com.mindgate.main.repository.AccountDetailsRepositoryInterface;
-import com.mindgate.main.repository.ChequeDetailsRepositoryInterface;
 
 @Service
 public class AccountDetailsService implements AccountDetailsServiceInterface {
@@ -19,8 +17,8 @@ public class AccountDetailsService implements AccountDetailsServiceInterface {
 
 
 	@Override
-	public List<AccountDetails> getById(int userId) {
-		return accountDetailsRepository.getById(userId);
+	public ResponseEntity<List<AccountDetails>> getById(int userId) {
+		return new ResponseEntity<List<AccountDetails>>( accountDetailsRepository.getById(userId), HttpStatusCode.valueOf(200));
 
 	}
 

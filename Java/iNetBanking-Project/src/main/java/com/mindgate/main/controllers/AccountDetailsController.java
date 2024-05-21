@@ -28,9 +28,8 @@ public class AccountDetailsController {
 	@GetMapping("getbyid/{userId}")
 	public ResponseEntity<?> getById(@PathVariable("userId") int userId) {
 		try {
-			ResponseEntity<List<AccountDetails>> responseEntity = new ResponseEntity<List<AccountDetails>>(
-					accountDetailsServiceInterface.getById(userId), HttpStatusCode.valueOf(200));
-			return responseEntity;
+			
+			return accountDetailsServiceInterface.getById(userId);
 		} catch (Exception e) {
 			return null;
 		}

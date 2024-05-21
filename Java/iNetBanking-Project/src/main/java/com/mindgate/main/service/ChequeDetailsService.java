@@ -15,12 +15,12 @@ public class ChequeDetailsService implements ChequeDetailsServiceInterface {
 	private ChequeDetailsRepositoryInterface chequeDetailsRepository;
 	
 	@Override
-	public boolean AddChequeDetails(ChequeDetails chequeDetails) {
+	public ResponseEntity<Boolean> AddChequeDetails(ChequeDetails chequeDetails) {
 		boolean res = false;
 		for(int i = 0; i < 5; i++) {
 		res = chequeDetailsRepository.AddChequeDetails(chequeDetails);
 		}
-		return res;
+		return new ResponseEntity<Boolean>(res, HttpStatusCode.valueOf(200));
 	}
 	
 	@Override
@@ -30,14 +30,14 @@ public class ChequeDetailsService implements ChequeDetailsServiceInterface {
 	}
 	
 	@Override
-	public List<ChequeDetails> getByAccountNumber(int accountNumber) {
+	public ResponseEntity<List<ChequeDetails>> getByAccountNumber(int accountNumber) {
 		// TODO Auto-generated method stub
-		return chequeDetailsRepository.getByAccountNumber(accountNumber);
+		return  new ResponseEntity<List<ChequeDetails>>( chequeDetailsRepository.getByAccountNumber(accountNumber), HttpStatusCode.valueOf(200));
 	}
 	
 	@Override
-	public boolean updateCheque(ChequeDetails chequeDetails) {
-		return chequeDetailsRepository.updateCheque(chequeDetails);
+	public ResponseEntity<Boolean> updateCheque(ChequeDetails chequeDetails) {
+		return new ResponseEntity<Boolean>(chequeDetailsRepository.updateCheque(chequeDetails),HttpStatusCode.valueOf(200));
 		
 	}
 

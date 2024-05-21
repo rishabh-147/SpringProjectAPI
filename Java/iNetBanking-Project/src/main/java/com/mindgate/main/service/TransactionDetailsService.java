@@ -25,10 +25,10 @@ public class TransactionDetailsService implements TransactionDetailsServiceInter
 	private static final double OVERDRAFT_BALANCE = 50000.00;
 	private static final double OVERDRAFT_CHARGE = 0.10; // 10%
 
-	@Override
-	public boolean addTransactionDetails(TransactionDetails transactionDetails) {
+	@Override	
+	public ResponseEntity<?> addTransactionDetails(TransactionDetails transactionDetails) {
 		// TODO Auto-generated method stub
-		return transactionDetailsRepo.addTransactionDetails(transactionDetails);
+		return new ResponseEntity<Boolean> (transactionDetailsRepo.addTransactionDetails(transactionDetails),HttpStatusCode.valueOf(200));
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class TransactionDetailsService implements TransactionDetailsServiceInter
 						beneficiaryCharge = 0;
 					}
 					if (beneficiaryODBal < OVERDRAFT_BALANCE) { // if there is OD used, it will be filled first
-						if (transAmount >= beneficiaryODBal) {
+						if (transAmount >= OVERDRAFT_BALANCE - beneficiaryODBal) {
 							transAmount -= OVERDRAFT_BALANCE - beneficiaryODBal;
 							beneficiaryODBal = OVERDRAFT_BALANCE;
 						}
