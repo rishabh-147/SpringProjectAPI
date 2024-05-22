@@ -14,5 +14,6 @@ public interface AccountDetailsRepositoryInterface {
 	//Update account balance debit, and also based on account type
 //	public AccountDetails debitAccount(AccountDetails accountDetails);
 	
-	AccountDetails getByAccount(long accounNumber);
+	public AccountDetails getByAccount(long accounNumber);
+	
 }

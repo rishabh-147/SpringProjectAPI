@@ -15,5 +15,6 @@ public interface UserDetailsServiceInterface {
 	
 	//Insert
 	public ResponseEntity<?> addUser(UserDetails userDetails);
-	
+	public boolean existDetail(UserDetails userdetails);
+
 }

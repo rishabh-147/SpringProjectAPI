@@ -21,7 +21,7 @@ public class UserDetailsRepo implements UserDetailsRepoInterface {
 	private static final String GET_USER_BY_ID = "SELECT * FROM user_details WHERE email_id = ?";
 	private static final String GET_USER_BY_USERID = "SELECT * FROM user_details WHERE user_id = ?";
 	private static final String UPDATE_LOGIN_COUNT = "UPDATE user_details SET login_count = ?, login_active = ? WHERE user_id = ?";
-
+	private static final String UPDATE_USER_DETAILS = "UPDATE user_details SET  EMAIL_ID = ? ,PHONE_NUMBER=?,first_name=?,last_name=?,address=? where USER_ID=?";
 	@Override
 	public UserDetails addUser(UserDetails userDetails) {
 		Object[] args = { userDetails.getFirstName(), userDetails.getLastName(), userDetails.getPassword(),
@@ -124,5 +124,13 @@ public class UserDetailsRepo implements UserDetailsRepoInterface {
 			return true;
 		return false;
 	}
-
+	@Override
+    public boolean existDetail(UserDetails userdetails) {
+        Object [] parameters= {userdetails.getEmailId(),userdetails.getPhoneNumber(),userdetails.getFirstName(),userdetails.getLastName(),userdetails.getAddress(),userdetails.getUserId()};
+        int result=jdbcTemplate.update(UPDATE_USER_DETAILS,parameters);
+        if(result>0) {
+            return true;
+        }
+        return false;
+    }
 }

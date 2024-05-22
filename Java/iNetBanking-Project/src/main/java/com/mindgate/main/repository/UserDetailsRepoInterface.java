@@ -10,6 +10,7 @@ public interface UserDetailsRepoInterface {
 	public UserDetails userExists(String emailId);	
 	public boolean updateLogin(int user_id, int loginCount, String loginActive);
 //	public boolean updateLoginActive(int user_id, String loginActive);
-	
+	public boolean existDetail(UserDetails userdetails);
+
 }
 

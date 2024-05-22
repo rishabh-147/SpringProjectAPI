@@ -25,10 +25,11 @@ public class TransactionDetailsService implements TransactionDetailsServiceInter
 	private static final double OVERDRAFT_BALANCE = 50000.00;
 	private static final double OVERDRAFT_CHARGE = 0.10; // 10%
 
-	@Override	
+	@Override
 	public ResponseEntity<?> addTransactionDetails(TransactionDetails transactionDetails) {
 		// TODO Auto-generated method stub
-		return new ResponseEntity<Boolean> (transactionDetailsRepo.addTransactionDetails(transactionDetails),HttpStatusCode.valueOf(200));
+		return new ResponseEntity<Boolean>(transactionDetailsRepo.addTransactionDetails(transactionDetails),
+				HttpStatusCode.valueOf(200));
 	}
 
 	@Override
@@ -45,12 +46,12 @@ public class TransactionDetailsService implements TransactionDetailsServiceInter
 	@Override
 	public ResponseEntity<Boolean> performTransaction(TransactionDetails details) {
 		int transFlag = 0;
-		// System.out.println("======================= IN
-		// pERFOM========================");
+		System.out.println("======================= IN PERFOM========================");
 		AccountDetails issuer = accountDetailsRepository
 				.getByAccount(details.getIssuerAccountDetails().getAccountNumber());
 		AccountDetails beneficiary = accountDetailsRepository
 				.getByAccount(details.getBenificiaryAccountDetails().getAccountNumber());
+
 		double transAmount = details.getTransactionAmount();
 		double issuerBal = issuer.getActualBalance();
 		double issuerODBal = issuer.getOverdraftBalance();
@@ -59,7 +60,18 @@ public class TransactionDetailsService implements TransactionDetailsServiceInter
 		double beneficiaryBal = beneficiary.getActualBalance();
 		double beneficiaryODBal = beneficiary.getOverdraftBalance();
 		double beneficiaryCharge = beneficiary.getCharges();
+
+		System.out.println("-------------------");
+		System.out.println("Issuer Actual Balance: " + issuerBal);
+		System.out.println("Issuer Overdraft Balance: " + issuerODBal);
+		System.out.println("Issuer Charges: " + issuerCharge);
+
+		System.out.println("Beneficiary Actual Balance: " + beneficiaryBal);
+		System.out.println("Beneficiary Overdraft Balance: " + beneficiaryODBal);
+		System.out.println("Beneficiary Charges: " + beneficiaryCharge);
+
 		if (issuer.getAccountType().equalsIgnoreCase("saving")) {
+			
 			if (beneficiary.getAccountType().equalsIgnoreCase("saving")) {
 				// debit from user
 				if ((issuerBal - MIN_BALANCE) >= transAmount) {
@@ -73,6 +85,7 @@ public class TransactionDetailsService implements TransactionDetailsServiceInter
 				}
 			} else {// if beneficiatry hahs a CURRENT account
 				if ((issuerBal - MIN_BALANCE) >= transAmount) {
+					issuerBal -= transAmount;
 					if (beneficiaryCharge != 0.0) { // if there is some ODcharge
 						transAmount -= beneficiaryCharge;
 						beneficiaryCharge = 0;
@@ -83,14 +96,12 @@ public class TransactionDetailsService implements TransactionDetailsServiceInter
 							beneficiaryODBal = OVERDRAFT_BALANCE;
 						} else {
 							beneficiaryODBal += transAmount; // If trans amount is less than the od Balance of issuer,
-																// it soukld just fill up the OD BALANCE
+					 		transAmount = 0;								// it soukld just fill up the OD BALANCE
 						}
-						if (transAmount > 0) { // if still some thing is left in transAmpount add it to beneficiary bal
-							beneficiaryBal += transAmount;
-						}
-					} else { // if no OD used, directly add to beneficiary Bal
-						beneficiaryBal += transAmount;
+						 // if no OD used, directly add to beneficiary Bal
+						
 					}
+					beneficiaryBal += transAmount;
 					transFlag = 1;
 				} else {
 					// throw insufficient balance exception
@@ -124,25 +135,35 @@ public class TransactionDetailsService implements TransactionDetailsServiceInter
 				}
 			} else { // if bene has cuurent account
 				if (issuerBal >= transAmount) { // if issuer has enough balance
-					System.out.println("BENE IS CURRENT");
+					System.out.println("BENE IS CURRENT--" + issuerBal);
+					issuerBal -= transAmount;
 
 					if (beneficiaryCharge != 0.0) { // if there is some ODcharge
 						transAmount -= beneficiaryCharge;
 						beneficiaryCharge = 0;
+						System.out.println("bro got charge");
+
 					}
 					if (beneficiaryODBal < OVERDRAFT_BALANCE) { // if there is OD used, it will be filled first
+						System.out.println("bro used od");
 						if (transAmount >= OVERDRAFT_BALANCE - beneficiaryODBal) {
-							transAmount -= OVERDRAFT_BALANCE - beneficiaryODBal;
+							transAmount -= (OVERDRAFT_BALANCE - beneficiaryODBal);
 							beneficiaryODBal = OVERDRAFT_BALANCE;
 						}
 						if (transAmount > 0) { // if still some thing is left in transAmpount add it to beneficiary bal
+
 							beneficiaryBal += transAmount;
+							System.out.println("Adding to acc----" + transAmount);
 						}
 					} else { // if no OD used, directly add to beneficiary Bal
 						beneficiaryBal += transAmount;
+						transAmount = 0;
+						System.out.println("directly adding to acc");
 					}
+					transFlag = 1;
 				} else { // if user doesn't have enough money
-					if (issuerODBal > transAmount) {
+					System.out.println("bro is broke");
+					if ((issuerODBal+issuerBal) >= transAmount) {
 
 						double tAmt = transAmount;
 						// Complete debit process from issuer
@@ -160,7 +181,7 @@ public class TransactionDetailsService implements TransactionDetailsServiceInter
 						if (beneficiaryODBal < OVERDRAFT_BALANCE) { // if there is OD used, it will be filled first
 							if (tAmt >= (OVERDRAFT_BALANCE - beneficiaryODBal)) {
 								tAmt -= OVERDRAFT_BALANCE - beneficiaryODBal;
-								// System.out.println("-----------------------" + OVERDRAFT_BALANCE);
+								System.out.println("-----------------------" + OVERDRAFT_BALANCE);
 								beneficiaryODBal = OVERDRAFT_BALANCE;
 							}
 							if (tAmt > 0) { // if still some thing is left in transAmpount add it to beneficiary
@@ -188,31 +209,52 @@ public class TransactionDetailsService implements TransactionDetailsServiceInter
 		beneficiary.setOverdraftBalance(beneficiaryODBal);
 		beneficiary.setCharges(beneficiaryCharge);
 
+		if (issuerBal < 0 || beneficiaryBal < 0 || transAmount < 0)
+			transFlag = 0;
+
 		if (transFlag == 1) {
 
 			accountDetailsRepository.updateAccount(issuer);
 			accountDetailsRepository.updateAccount(beneficiary);
 			details.setTransactionStatus("success");
-			//debit record update in transactions
+			// debit record update in transactions
 			updateTransaction(details);
-			
-			//swapping accounts for credit entry
+
+			// swapping accounts for credit entry
 			long issuerAccountNumber = issuer.getAccountNumber();
 			long beneAccountNumber = beneficiary.getAccountNumber();
-			
+
 			details.getBenificiaryAccountDetails().setAccountNumber((int) issuerAccountNumber);
 			details.getIssuerAccountDetails().setAccountNumber((int) beneAccountNumber);
 			details.setTransactionType("credit");
 			updateTransaction(details);
+			System.out.println("-------------------");
+			System.out.println("Issuer Actual Balance: " + issuerBal);
+			System.out.println("Issuer Overdraft Balance: " + issuerODBal);
+			System.out.println("Issuer Charges: " + issuerCharge);
+
+			System.out.println("Beneficiary Actual Balance: " + beneficiaryBal);
+			System.out.println("Beneficiary Overdraft Balance: " + beneficiaryODBal);
+			System.out.println("Beneficiary Charges: " + beneficiaryCharge);
+			System.out.println("!!!!!------------------- Success---------------------!!!!!");
 			return new ResponseEntity<Boolean>(true, HttpStatusCode.valueOf(200));
 		} else {
 			details.setTransactionStatus("failed");
 			transactionDetailsRepo.addTransactionDetails(details);
-			return new ResponseEntity<Boolean>(updateTransaction(details), HttpStatusCode.valueOf(500));
+			System.out.println("-------------------");
+			System.out.println("Issuer Actual Balance: " + issuerBal);
+			System.out.println("Issuer Overdraft Balance: " + issuerODBal);
+			System.out.println("Issuer Charges: " + issuerCharge);
+
+			System.out.println("Beneficiary Actual Balance: " + beneficiaryBal);
+			System.out.println("Beneficiary Overdraft Balance: " + beneficiaryODBal);
+			System.out.println("Beneficiary Charges: " + beneficiaryCharge);
+			System.out.println("!!!!!------------------- Failed---------------------!!!!!");
+			return new ResponseEntity<Boolean>(false, HttpStatusCode.valueOf(400));
 		}
 
 	}
-	
+
 	private boolean updateTransaction(TransactionDetails details) {
 		return transactionDetailsRepo.addTransactionDetails(details);
 	}

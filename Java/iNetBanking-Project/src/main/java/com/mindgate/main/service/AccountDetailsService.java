@@ -14,7 +14,7 @@ import com.mindgate.main.repository.AccountDetailsRepositoryInterface;
 public class AccountDetailsService implements AccountDetailsServiceInterface {
 	@Autowired
 	private AccountDetailsRepositoryInterface accountDetailsRepository;
-
+	
 
 	@Override
 	public ResponseEntity<List<AccountDetails>> getById(int userId) {

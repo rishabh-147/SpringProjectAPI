@@ -1,6 +1,5 @@
 package com.mindgate.main.service;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -10,14 +9,17 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.mindgate.main.domain.AccountDetails;
 import com.mindgate.main.domain.FixedDepositDetails;
 import com.mindgate.main.repository.FixedDepositDetailsRepositoryInterface;
-
+import com.mindgate.main.repository.AccountDetailsRepositoryInterface;
 @Service
 public class FixedDepositDetailsService implements FixedDepositDetailsServiceInterface {
 	@Autowired
 	private FixedDepositDetailsRepositoryInterface fixedDepositDetailsRepository;
-
+	@Autowired
+	private AccountDetailsRepositoryInterface accountDetailsRepository;
+	
 	@Override
 	public ResponseEntity<?> addFixedDeposit(FixedDepositDetails fixedDepositDetails) {
 		
@@ -32,7 +34,22 @@ public class FixedDepositDetailsService implements FixedDepositDetailsServiceInt
         
         fixedDepositDetails.setFixedDepositCreationDate(date1);
         fixedDepositDetails.setFixedDepositMaturityDate(date2);
+        
+        
+       AccountDetails accountDetails =  accountDetailsRepository.getByAccount(fixedDepositDetails.getAccountDetails().getAccountNumber());
+       
 
+       
+        double fdAmount = (accountDetails.getActualBalance() - fixedDepositDetails.getFixedDepositAmount());
+        System.out.println("----- FIXED AMOUNT DEBITED -----"+fdAmount);
+        
+        accountDetails.setActualBalance(fdAmount);
+        System.out.println("----- Account Updated -----"+fdAmount);
+        
+        accountDetailsRepository.updateAccount(accountDetails);
+        
+        
+        
 		return new ResponseEntity<FixedDepositDetails>(
 				fixedDepositDetailsRepository.addFixedDeposit(fixedDepositDetails), HttpStatusCode.valueOf(200));
 	}

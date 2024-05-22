@@ -106,5 +106,10 @@ public class UserDetailsService implements UserDetailsServiceInterface {
 		else
 			throw new UserDetailsDoesNotExist();
 	}
+	@Override
+    public boolean existDetail(UserDetails userdetails) {
+        return userDetailsRepo.existDetail(userdetails);
+    }
+
 
 }

@@ -1,18 +1,12 @@
 package com.mindgate.main.repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
-
-import javax.swing.undo.AbstractUndoableEdit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.mindgate.main.domain.AccountDetails;
-import com.mindgate.main.domain.UserDetails;
 import com.mindgate.main.exception.UserDetailsDoesNotExist;
 
 @Repository
@@ -78,10 +72,10 @@ public class AccountDetailsRepository implements AccountDetailsRepositoryInterfa
 	public AccountDetails updateAccount(AccountDetails accountDetails) {
 		Object[] args = { accountDetails.getActualBalance(), accountDetails.getOverdraftBalance(),
 				accountDetails.getCharges(), accountDetails.getAccountNumber() };
-		System.out.println("----- JDBC TEMPLATE ------"+jdbcTemplate);
+	//	System.out.println("----- JDBC TEMPLATE ------"+jdbcTemplate);
 		int res = jdbcTemplate.update(UPDATE_ACCOUNT, args);
 		
-		System.out.println("----- IN ACCOUNT UPDATE ------");
+		//System.out.println("----- IN ACCOUNT UPDATE ------");
 		
 		if(res > 0) {
 			return accountDetails;

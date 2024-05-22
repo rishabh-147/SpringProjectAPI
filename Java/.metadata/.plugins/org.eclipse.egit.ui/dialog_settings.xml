@@ -57,7 +57,14 @@
 			<item value=""/>
 		</list>
 		<list key="D:\Project\.git">
-			<item value="empty"/>
+			<item value="false"/>
+			<item value="rishabh-147 &lt;onlinestuff.rishabh@gmail.com&gt;"/>
+			<item value="Added"/>
+			<item value="rishabh-147 &lt;onlinestuff.rishabh@gmail.com&gt;"/>
+			<item value="80fc4e26740a31f7ac74e0f65bb679b74cdea3a1"/>
+			<item value="0"/>
+			<item value="false"/>
+			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.egit.ui.internal.push.PushResultDialog.dialogBounds">

@@ -9,36 +9,40 @@ import org.springframework.stereotype.Service;
 
 import com.mindgate.main.domain.ChequeDetails;
 import com.mindgate.main.repository.ChequeDetailsRepositoryInterface;
+
 @Service
 public class ChequeDetailsService implements ChequeDetailsServiceInterface {
 	@Autowired
 	private ChequeDetailsRepositoryInterface chequeDetailsRepository;
-	
+
 	@Override
 	public ResponseEntity<Boolean> AddChequeDetails(ChequeDetails chequeDetails) {
 		boolean res = false;
-		for(int i = 0; i < 5; i++) {
-		res = chequeDetailsRepository.AddChequeDetails(chequeDetails);
+		for (int i = 0; i < 5; i++) {
+			res = chequeDetailsRepository.AddChequeDetails(chequeDetails);
 		}
 		return new ResponseEntity<Boolean>(res, HttpStatusCode.valueOf(200));
 	}
-	
+
 	@Override
 	public ResponseEntity<ChequeDetails> getChequeDetails(String cheque_no) {
-		
-		return new ResponseEntity<ChequeDetails>(chequeDetailsRepository.getChequeDetails(cheque_no), HttpStatusCode.valueOf(200));
+
+		return new ResponseEntity<ChequeDetails>(chequeDetailsRepository.getChequeDetails(cheque_no),
+				HttpStatusCode.valueOf(200));
 	}
-	
+
 	@Override
 	public ResponseEntity<List<ChequeDetails>> getByAccountNumber(int accountNumber) {
 		// TODO Auto-generated method stub
-		return  new ResponseEntity<List<ChequeDetails>>( chequeDetailsRepository.getByAccountNumber(accountNumber), HttpStatusCode.valueOf(200));
+		return new ResponseEntity<List<ChequeDetails>>(chequeDetailsRepository.getByAccountNumber(accountNumber),
+				HttpStatusCode.valueOf(200));
 	}
-	
+
 	@Override
 	public ResponseEntity<Boolean> updateCheque(ChequeDetails chequeDetails) {
-		return new ResponseEntity<Boolean>(chequeDetailsRepository.updateCheque(chequeDetails),HttpStatusCode.valueOf(200));
-		
+		return new ResponseEntity<Boolean>(chequeDetailsRepository.updateCheque(chequeDetails),
+				HttpStatusCode.valueOf(200));
+
 	}
 
 }

@@ -49,4 +49,8 @@ public class UserDetailsController {
 		//System.out.println(userDetails);
 		return service.addUser(userDetails);
 	}
+	@PostMapping("existinguser")
+    public boolean addexist(@RequestBody UserDetails userDetails) {
+        return service.existDetail(userDetails);
+    }
 }
