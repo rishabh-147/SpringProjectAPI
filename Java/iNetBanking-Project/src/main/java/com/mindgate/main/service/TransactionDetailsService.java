@@ -24,8 +24,8 @@ public class TransactionDetailsService implements TransactionDetailsServiceInter
 	private static final double MIN_BALANCE = 5000.00;
 	private static final double OVERDRAFT_BALANCE = 50000.00;
 	private static final double OVERDRAFT_CHARGE = 0.10; // 10%
-
-	@Override
+	private static final double BOUNCED_CHARGE = 100.00;
+	@Override	
 	public ResponseEntity<?> addTransactionDetails(TransactionDetails transactionDetails) {
 		// TODO Auto-generated method stub
 		return new ResponseEntity<Boolean>(transactionDetailsRepo.addTransactionDetails(transactionDetails),
@@ -257,6 +257,36 @@ public class TransactionDetailsService implements TransactionDetailsServiceInter
 
 	private boolean updateTransaction(TransactionDetails details) {
 		return transactionDetailsRepo.addTransactionDetails(details);
+	}
+	
+	public ResponseEntity<Boolean> bouncedCheque(TransactionDetails details){
+		AccountDetails issuer = accountDetailsRepository
+				.getByAccount(details.getIssuerAccountDetails().getAccountNumber());
+		AccountDetails beneficiary = accountDetailsRepository
+				.getByAccount(details.getBenificiaryAccountDetails().getAccountNumber());
+		
+		double issuerBal = issuer.getActualBalance();
+		double beneficiaryBal = beneficiary.getActualBalance();
+		if(issuerBal > BOUNCED_CHARGE && beneficiaryBal > BOUNCED_CHARGE) {
+			issuerBal -= BOUNCED_CHARGE;
+			beneficiaryBal -= BOUNCED_CHARGE;
+		}
+		else {
+			issuerBal = 0;
+			beneficiaryBal = 0;
+		}
+		
+		issuer.setActualBalance(issuerBal);
+		beneficiary.setActualBalance(beneficiaryBal);
+		
+		details.setBenificiaryAccountDetails(beneficiary);
+		details.setIssuerAccountDetails(issuer);
+		
+		details.setTransactionAmount(BOUNCED_CHARGE);
+		details.setRemarks("BOUNCED CHEQUE");
+		
+		return new ResponseEntity<Boolean>(transactionDetailsRepo.addTransactionDetails(details)
+				, HttpStatusCode.valueOf(200));
 	}
 
 }

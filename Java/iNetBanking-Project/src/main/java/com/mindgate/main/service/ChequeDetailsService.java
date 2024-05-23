@@ -42,7 +42,24 @@ public class ChequeDetailsService implements ChequeDetailsServiceInterface {
 	public ResponseEntity<Boolean> updateCheque(ChequeDetails chequeDetails) {
 		return new ResponseEntity<Boolean>(chequeDetailsRepository.updateCheque(chequeDetails),
 				HttpStatusCode.valueOf(200));
-
 	}
 
+
+	@Override
+	public ResponseEntity<?> claimCheque(ChequeDetails chequeDetails) {
+		// TODO Auto-generated method stub
+		return new ResponseEntity<List<ChequeDetails>>(chequeDetailsRepository.claimCheque(chequeDetails), HttpStatusCode.valueOf(200));
+	}
+
+	@Override
+	public ResponseEntity<?> updateCheque1(ChequeDetails chequeDetails) {
+		// TODO Auto-generated method stub
+		return new ResponseEntity<Boolean>(chequeDetailsRepository.updateCheque1(chequeDetails), HttpStatusCode.valueOf(200));
+	}
+
+	@Override
+	public ResponseEntity<?> hasCheque(int accountDetails) {
+		// TODO Auto-generated method stub
+		return new ResponseEntity<Boolean>(chequeDetailsRepository.hasCheque(accountDetails), HttpStatusCode.valueOf(200));
+	}
 }
