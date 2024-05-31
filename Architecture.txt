@@ -1,0 +1,4 @@
+Rest API, we have is composed of tetra-layer architecture, starting from Domain, Repository, Service & Controller, on top of Spring Boot, which saves us from the the application configuration and we can concentrate more on the functionalities. 
+The user request travelles all the way from Controllers to Domain classes to database and vice-versa.
+The user request comes to the controller and then the controllers call the respective Service classes which implement all the buisness logic with the help of the repositories, which themselves implement abstraction via interfaces.
+These repositories make use of the domain classes, which act as a container for the data transfer to-and-fro in database.
